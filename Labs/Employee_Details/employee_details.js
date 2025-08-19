@@ -4,30 +4,31 @@ const employees = [
     { id: 3, name: 'Bob Johnson', age: 35, department: 'Finance', salary: 60000},
 ]
 
-const totalEmployees = employees.map(displayEmployees(employee, index));
-document.getElementById('employeeDetails').innerHTML = totalEmployees;
-
-function displayEmployees(employee, index) {
-    `<p> ${employee.id}: ${employee.name}: ${employee.age}: ${employee.department} - ${employee.salary} </p>`.join('');
+function displayEmployees() {
+    function employeeInfo(employee) {
+        return [`<p> ${employee.id}: ${employee.name}: ${employee.age}: ${employee.department} - ${employee.salary} </p>`];
+    }
+    const totalEmployees = employees.map(employeeInfo).join('');
+    document.getElementById('employeeDetails').innerHTML = totalEmployees;
 }
 
 function calculateTotalSalaries() {
     const totalSalaries = employees.reduce((acc, employee) => acc + employee.salary, 0);
     alert(`Total Salaries: $${totalSalaries}`);
 }
- 
-function displayHREmployees() { 
+
+function displayHREmployees() {
     const hrEmployees = employees.filter(employee => employee.department === 'HR');
     const hrEmployeesDisplay = hrEmployees.map((employee, index) => `<p> ${employee.id}: ${employee.name}: ${employee.age} - ${employee.department} - ${employee.salary} </p>`).join();
-    document.getElementById('employeesDetails').innerHTML = hrEmployeesDisplay;
+    document.getElementById('employeeDetails').innerHTML = hrEmployeesDisplay;
 }
 
 function findEmployeeById(employeeId) {
-    const foundEmployee = employees.find(employee => employee.id === employeeId); 
+    const foundEmployee = employees.find(employee => employee.id === employeeId);
     if (foundEmployee) {
-        document.getElementById('employeesDetails').innerHTML = `<p> ${foundEmployee.id} ${foundEmployee.name} - ${foundEmployee.age} - ${foundEmployee.department} - ${foundEmployee.salary} </p>`.join('');
+        document.getElementById('employeeDetails').innerHTML = `<p> ${foundEmployee.id}: ${foundEmployee.name} - ${foundEmployee.age} - ${foundEmployee.department} - ${foundEmployee.salary} </p>`
     }
     else {
-        document.getElementById('employeesDetails').innerHTML = `<p> No employee has been found with this ID. </p>`
+        document.getElementById('employeeDetails').innerHTML = `<p> No employee has been found with this ID. </p>`
     }
 }
