@@ -35,8 +35,8 @@ function endTest() {
 	const outputDiv = document.getElementById("output");
 	outputDiv.innerHTML =
 	`<h2>Typing Test Results</h2> 
+	<p>Total Characters: ${userTypedText.length}</p>
 	<p>Time Elapsed: ${timeElapsed.toFixed(2)} seconds</p>
-	<p> Words: ${typedWords}</p>
 	<p>Words per Minute (WPM): ${wpm} </p>`;
 }
 
